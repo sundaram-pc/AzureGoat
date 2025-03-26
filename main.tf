@@ -497,7 +497,7 @@ EOF
   }
 }
 
-resource "azurerm_automation_runbook" "dev_automation_runbook" {
+/*resource "azurerm_automation_runbook" "dev_automation_runbook" {
   name                    = "Get-AzureVM"
   location              = var.location
   resource_group_name     = var.resource_group
@@ -507,7 +507,7 @@ resource "azurerm_automation_runbook" "dev_automation_runbook" {
   description             = "This is an example runbook"
   runbook_type            = "PowerShellWorkflow"
   content = data.local_file.runbook_file.content
-}
+}*/
 
 
 ###########################frontend########################################
