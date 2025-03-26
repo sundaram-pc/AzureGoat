@@ -176,8 +176,7 @@ resource "azurerm_linux_function_app" "function_app" {
 
   site_config {
     always_on=true
-    linux_fx_version = "python|3.9"
-  
+
     cors {
       allowed_origins = ["*"]
     }
