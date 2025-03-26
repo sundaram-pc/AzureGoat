@@ -155,10 +155,9 @@ resource "azurerm_service_plan" "app_service_plan" {
   location            = var.location
   kind                = "FunctionApp"
   reserved            = true
-  sku {
-    tier = "Dynamic"
-    size = "Y1"
-  }
+  sku_name            ="Y1"
+  os_type             ="linux"
+ 
 }
 
 resource "azurerm_function_app" "function_app" {
