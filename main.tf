@@ -153,10 +153,8 @@ resource "azurerm_service_plan" "app_service_plan" {
   name                = "appazgoat${random_id.randomId.dec}-app-service-plan"
   resource_group_name = var.resource_group
   location            = var.location
-  kind                = "FunctionApp"
-  reserved            = true
   sku_name            ="Y1"
-  os_type             ="linux"
+  os_type             ="Linux"
  
 }
 
