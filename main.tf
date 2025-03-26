@@ -501,7 +501,7 @@ resource "azurerm_automation_runbook" "dev_automation_runbook" {
   name                    = "Get-AzureVM"
   location              = var.location
   resource_group_name     = var.resource_group
-  automation_account_name = azurerm_automation_account.dev_automation_account_test.name
+ # automation_account_name = azurerm_automation_account.dev_automation_account_test.name
   log_verbose             = "true"
   log_progress            = "true"
   description             = "This is an example runbook"
