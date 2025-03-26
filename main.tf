@@ -61,8 +61,8 @@ python3 modules/module-1/resources/cosmosdb/create-table.py
 EOF
     interpreter = ["/bin/bash", "-c"]
   }
-  #depends_on = [azurerm_cosmosdb_account.db,azurerm_storage_account.storage_account,azurerm_storage_container.storage_container]
-depends_on = [azurerm_storage_account.storage_account,azurerm_storage_container.storage_container]
+  depends_on = [azurerm_cosmosdb_account.db,azurerm_storage_account.storage_account,azurerm_storage_container.storage_container]
+#depends_on = [azurerm_storage_account.storage_account,azurerm_storage_container.storage_container]
 }
 
 
