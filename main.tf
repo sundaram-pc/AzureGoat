@@ -466,7 +466,7 @@ resource "azurerm_user_assigned_identity" "user_id" {
   name = "user-assigned-id${random_id.randomId.dec}"
 }
 
-resource "azurerm_automation_account" "dev_automation_account_test" {
+/*resource "azurerm_automation_account" "dev_automation_account_test" {
   name                = "dev-automation-account-appazgoat${random_id.randomId.dec}"
   location              = var.location
   resource_group_name = var.resource_group
@@ -479,7 +479,7 @@ resource "azurerm_automation_account" "dev_automation_account_test" {
   tags = {
     environment = "development"
   }
-}
+}*/
 
 data "local_file" "runbook_file" {
   filename = "modules/module-1/resources/vm/listVM.ps1"
