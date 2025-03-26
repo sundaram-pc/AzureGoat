@@ -158,7 +158,7 @@ resource "azurerm_service_plan" "app_service_plan" {
  
 }
 
-resource "azurerm_function_app" "function_app" {
+resource "azurerm_linux_function_app" "function_app" {
   name                       = "appazgoat${random_id.randomId.dec}-function"
   resource_group_name        = var.resource_group
   location                   = var.location
