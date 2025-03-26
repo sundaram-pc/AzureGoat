@@ -27,7 +27,7 @@ variable "location" {
 }
  
 
-/*resource "azurerm_cosmosdb_account" "db" {
+resource "azurerm_cosmosdb_account" "db" {
   name                = "ine-cosmos-db-data-${random_id.randomId.dec}"
   location            = "centralus"
   resource_group_name = var.resource_group
@@ -48,7 +48,7 @@ variable "location" {
     location          = "eastus"
     failover_priority = 0
   }
-}*/
+}
 
 resource "null_resource" "file_populate_data" {
   provisioner "local-exec" {
