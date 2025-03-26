@@ -29,7 +29,7 @@ variable "location" {
 
 resource "azurerm_cosmosdb_account" "db" {
   name                = "ine-cosmos-db-data-${random_id.randomId.dec}"
-  location            = "eastus"
+  location            = "westus"
   resource_group_name = var.resource_group
   offer_type          = "Standard"
   kind                = "GlobalDocumentDB"
@@ -53,9 +53,10 @@ resource "azurerm_cosmosdb_account" "db" {
 resource "null_resource" "file_populate_data" {
   provisioner "local-exec" {
     command     = <<EOF
-sed -i 's/AZURE_FUNCTION_URL/${azurerm_storage_account.storage_account.name}\.blob\.core\.windows\.net\/${azurerm_storage_container.storage_container_prod.name}/g' modules/module-1/resources/cosmosdb/blog-posts.json
+sed -i "s|AZURE_FUNCTION_URL|${azurerm_storage_account.storage_account.name}.blob.core.windows.net/${azurerm_storage_container.storage_container_prod.name}|g" modules/module-1/resources/cosmosdb/blog-posts.json
 python3 -m venv azure-goat-environment
 source azure-goat-environment/bin/activate
+pip install --upgrade pip
 pip3 install --pre azure-cosmos
 python3 modules/module-1/resources/cosmosdb/create-table.py
 EOF
