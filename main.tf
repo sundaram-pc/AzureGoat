@@ -1,4 +1,4 @@
-terraform {
+tralterraform {
   required_version = ">= 0.13"
   required_providers {
     azurerm = {
@@ -29,7 +29,7 @@ variable "location" {
 
 resource "azurerm_cosmosdb_account" "db" {
   name                = "ine-cosmos-db-data-${random_id.randomId.dec}"
-  location            = "westus"
+  location            = "centralus"
   resource_group_name = var.resource_group
   offer_type          = "Standard"
   kind                = "GlobalDocumentDB"
