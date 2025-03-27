@@ -152,7 +152,7 @@ resource "azurerm_storage_blob" "storage_blob" {
 resource "azurerm_service_plan" "app_service_plan" {
   name                = "appazgoat${random_id.randomId.dec}-app-service-plan"
   resource_group_name = var.resource_group
-  location            = "eastus"
+  location            = "westus"
   sku_name            ="S1"
   os_type             ="Linux"
  
