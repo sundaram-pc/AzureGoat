@@ -540,7 +540,7 @@ resource "azurerm_linux_function_app" "function_app_front" {
   }
   
   site_config {
-    linux_fx_version = "node|12"
+   
     
   }
   storage_account_name       = azurerm_storage_account.storage_account.name
