@@ -162,12 +162,7 @@ resource "azurerm_service_plan" "app_service_plan" {
   os_type             ="Linux"
  
 }
-# Sleep for 60 seconds
-resource "time_sleep" "wait_for_propagation" {
-  depends_on = [azurerm_service_plan.app_service_plan]
 
-  create_duration = "60s"  # Sleep duration
-}
 
 resource "azurerm_linux_function_app" "function_app" {
   name                       = "appazgoat${random_id.randomId.dec}-function"
@@ -182,6 +177,7 @@ resource "azurerm_linux_function_app" "function_app" {
     
     "CON_STR" = "${azurerm_storage_account.storage_account.primary_connection_string}"
     "CONTAINER_NAME" = "${azurerm_storage_container.storage_container.name}"
+    depends_on = [azurerm_service_plan.app_service_plan]
   }
 
   site_config {
@@ -193,7 +189,7 @@ resource "azurerm_linux_function_app" "function_app" {
   }
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
-  depends_on = [azurerm_service_plan.app_service_plan]
+  
 
 }
 
