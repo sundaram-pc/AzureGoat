@@ -1,6 +1,11 @@
 terraform {
+
   required_version = ">= 0.13"
   required_providers {
+      time = {
+      source  = "hashicorp/time"
+      version = "~> 0.9"
+    }
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "~> 3.11.0"
@@ -156,6 +161,12 @@ resource "azurerm_service_plan" "app_service_plan" {
   sku_name            ="S1"
   os_type             ="Linux"
  
+}
+# Sleep for 60 seconds
+resource "time_sleep" "wait_for_propagation" {
+  depends_on = [azurerm_service_plan.app_service_plan]
+
+  create_duration = "60s"  # Sleep duration
 }
 
 resource "azurerm_linux_function_app" "function_app" {
