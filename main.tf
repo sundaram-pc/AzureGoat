@@ -174,7 +174,7 @@ resource "azurerm_linux_function_app" "function_app" {
     "CON_STR" = "${azurerm_storage_account.storage_account.primary_connection_string}"
     "CONTAINER_NAME" = "${azurerm_storage_container.storage_container.name}"
     
-  }
+  
 
   site_config {
     always_on=true
@@ -186,7 +186,7 @@ resource "azurerm_linux_function_app" "function_app" {
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
   
-
+}
 
 
 
