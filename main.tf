@@ -153,7 +153,7 @@ resource "azurerm_service_plan" "app_service_plan" {
   name                = "appazgoat${random_id.randomId.dec}-app-service-plan"
   resource_group_name = var.resource_group
   location            = "westus"
-  sku_name            ="B1"
+  sku_name            ="Y1"
   os_type             ="Linux"
  
 }
