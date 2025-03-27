@@ -187,7 +187,7 @@ resource "azurerm_linux_function_app" "function_app" {
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
   
 
-}
+
 
 
 # Generate random text for a unique storage account name
