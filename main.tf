@@ -528,7 +528,7 @@ resource "azurerm_storage_blob" "storage_blob_front" {
 }
 
 
-resource "azurerm_function_app" "function_app_front" {
+resource "azurerm_linux_function_app" "function_app_front" {
   name                       = "appazgoat${random_id.randomId.dec}-function-app"
   resource_group_name        = var.resource_group
   location                   = var.location
