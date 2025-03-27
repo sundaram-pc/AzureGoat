@@ -153,8 +153,8 @@ resource "azurerm_storage_blob" "storage_blob" {
 resource "azurerm_service_plan" "app_service_plan" {
   name                = "appazgoat${random_id.randomId.dec}-app-service-plan"
   resource_group_name = var.resource_group
-  location            = "eastus"
-  sku_name            ="S1"
+  location            = "westus"
+  sku_name            ="Y1"
   os_type             ="Linux"
  
 }
@@ -163,7 +163,7 @@ resource "azurerm_service_plan" "app_service_plan" {
 resource "azurerm_linux_function_app" "function_app" {
   name                       = "appazgoat${random_id.randomId.dec}-function"
   resource_group_name        = var.resource_group
-  location                   = "eastus"
+  location                   = "westus"
    depends_on = [azurerm_service_plan.app_service_plan]
  service_plan_id     = azurerm_service_plan.app_service_plan.id
   app_settings = {
@@ -543,7 +543,7 @@ resource "null_resource" "wait_for_service_plan" {
 resource "azurerm_linux_function_app" "function_app_front" {
   name                       = "appazgoat${random_id.randomId.dec}-function-app"
   resource_group_name        = var.resource_group
-  location                   = "eastus"
+  location                   = "westus"
   service_plan_id        = azurerm_service_plan.app_service_plan.id
  
   app_settings = {
