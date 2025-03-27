@@ -530,6 +530,13 @@ resource "azurerm_storage_blob" "storage_blob_front" {
   depends_on = [data.archive_file.file_function_app_front,azurerm_storage_container.storage_container]
 }
 
+resource "null_resource" "wait_for_service_plan" {
+  provisioner "local-exec" {
+    command = "sleep 60"  # Sleep for 60 seconds
+  }
+
+  depends_on = [azurerm_service_plan.app_service_plan]
+}
 
 resource "azurerm_linux_function_app" "function_app_front" {
   name                       = "appazgoat${random_id.randomId.dec}-function-app"
@@ -550,7 +557,7 @@ resource "azurerm_linux_function_app" "function_app_front" {
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
   
-  depends_on = [null_resource.file_replacement_upload,azurerm_service_plan.app_service_plan]
+  depends_on = [null_resource.file_replacement_upload, null_resource.wait_for_service_plan]
 }
 
 resource "null_resource" "file_replacement_vm_ip" {
