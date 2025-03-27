@@ -30,7 +30,7 @@ variable "location" {
 
 resource "azurerm_cosmosdb_account" "db" {
   name                = "ine-cosmos-db-data-${random_id.randomId.dec}"
-  location            = "westus"
+  location            = "eastus"
   resource_group_name = var.resource_group
   offer_type          = "Standard"
   kind                = "GlobalDocumentDB"
@@ -46,7 +46,7 @@ resource "azurerm_cosmosdb_account" "db" {
   }
 
   geo_location {
-    location          = "westus"
+    location          = "eastus"
     failover_priority = 0
   }
 }
@@ -153,7 +153,7 @@ resource "azurerm_storage_blob" "storage_blob" {
 resource "azurerm_service_plan" "app_service_plan" {
   name                = "appazgoat${random_id.randomId.dec}-app-service-plan"
   resource_group_name = var.resource_group
-  location            = "westus"
+  location            = "eastus"
   sku_name            ="S1"
   os_type             ="Linux"
  
@@ -163,7 +163,7 @@ resource "azurerm_service_plan" "app_service_plan" {
 resource "azurerm_linux_function_app" "function_app" {
   name                       = "appazgoat${random_id.randomId.dec}-function"
   resource_group_name        = var.resource_group
-  location                   = "westus"
+  location                   = "eastus"
    depends_on = [azurerm_service_plan.app_service_plan]
  service_plan_id     = azurerm_service_plan.app_service_plan.id
   app_settings = {
@@ -543,7 +543,7 @@ resource "null_resource" "wait_for_service_plan" {
 resource "azurerm_linux_function_app" "function_app_front" {
   name                       = "appazgoat${random_id.randomId.dec}-function-app"
   resource_group_name        = var.resource_group
-  location                   = "westus"
+  location                   = "eastus"
   service_plan_id        = azurerm_service_plan.app_service_plan.id
  
   app_settings = {
