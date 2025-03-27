@@ -534,7 +534,7 @@ resource "azurerm_storage_blob" "storage_blob_front" {
 
 resource "null_resource" "wait_for_service_plan" {
   provisioner "local-exec" {
-    command = "sleep 60"  # Sleep for 60 seconds
+    command = "sleep 120"  # Sleep for 60 seconds
   }
 
   depends_on = [azurerm_service_plan.app_service_plan]
@@ -543,7 +543,7 @@ resource "null_resource" "wait_for_service_plan" {
 resource "azurerm_linux_function_app" "function_app_front" {
   name                       = "appazgoat${random_id.randomId.dec}-function-app"
   resource_group_name        = var.resource_group
-  location                   = var.location
+  location                   = "westus"
   service_plan_id        = azurerm_service_plan.app_service_plan.id
  
   app_settings = {
@@ -552,10 +552,13 @@ resource "azurerm_linux_function_app" "function_app_front" {
     "AzureWebJobsDisableHomepage" = "true",
   }
   
-  site_config {
-   
-    
+site_config {
+  always_on = true
+  cors {
+    allowed_origins = ["*"]
   }
+}
+
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
   
