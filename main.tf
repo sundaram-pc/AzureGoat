@@ -175,6 +175,7 @@ resource "azurerm_linux_function_app" "function_app" {
     "CONTAINER_NAME" = "${azurerm_storage_container.storage_container.name}"
     
   
+}
 
   site_config {
     always_on=true
@@ -187,6 +188,7 @@ resource "azurerm_linux_function_app" "function_app" {
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
   
 }
+
 
 
 
